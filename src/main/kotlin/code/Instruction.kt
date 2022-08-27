@@ -1,11 +1,11 @@
 package code
 
-import to2ByteArray
+import to2UByteArray
 
-data class Instruction(val bytes: ByteArray) {
-    constructor(opCode: OpCode): this(byteArrayOf(opCode.ordinalToByte()))
+data class Instruction(val bytes: UByteArray) {
+    constructor(opCode: OpCode): this(ubyteArrayOf(opCode.ordinalToByte()))
 
-    constructor(opCode: OpCode, number: Int): this(byteArrayOf(opCode.ordinalToByte(), *number.to2ByteArray() ))
+    constructor(opCode: OpCode, number: Int): this(ubyteArrayOf(opCode.ordinalToByte(), *number.to2UByteArray() ))
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

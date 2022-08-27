@@ -3,20 +3,25 @@ package study
 import code.OpCode
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import to2ByteArray
+import to2UByteArray
 
 class ByteTest {
     @Test
-    fun to2ByteArray() {
-        val bytes = 3.to2ByteArray()
+    fun to2UByteArray() {
+        val bytes = 3.to2UByteArray()
         assertThat(bytes).hasSize(2)
     }
 
     @Test
     fun setByteArray() {
-        val bytes = byteArrayOf(OpCode.OpConstant.ordinal.toByte(), *3.to2ByteArray() )
+        val bytes = ubyteArrayOf(OpCode.OpConstant.ordinal.toUByte(), *3.to2UByteArray() )
         assertThat(bytes).hasSize(3)
-        assertThat(bytes).containsExactly(0, 3, 0)
+        assertThat(bytes).containsExactly(0u, 3u, 0u)
+    }
+
+    @Test
+    fun byte() {
+        val byte = 255.toUByte()
+        println("byte : $byte")
     }
 }
-

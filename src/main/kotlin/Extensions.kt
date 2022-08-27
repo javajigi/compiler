@@ -1,2 +1,2 @@
-fun Int.to2ByteArray() : ByteArray
-    = byteArrayOf(toByte(), shr(8).toByte())
+fun Int.to2UByteArray() : UByteArray
+    = ubyteArrayOf(shr(8).toUByte(), toUByte())

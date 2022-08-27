@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class InstructionTest {
     @Test
     fun create() {
-        val opConstant = Instruction(OpCode.OpConstant, 2)
-        assertThat(opConstant.bytes).containsExactly(0, 2, 0)
+        val opConstant = Instruction(OpCode.OpConstant, 65534)
+        assertThat(opConstant.bytes).containsExactly(0u, 255u, 254u)
     }
 }

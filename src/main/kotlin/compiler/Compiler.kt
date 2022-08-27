@@ -7,6 +7,7 @@ import ast.expression.InfixExpression
 import ast.expression.IntExpression
 import code.Instruction
 import code.OpCode
+import token.TokenType
 
 class Compiler {
     private val instructions = mutableListOf<Instruction>()
@@ -25,6 +26,10 @@ class Compiler {
             is InfixExpression -> {
                 compile(node.left)
                 compile(node.right)
+
+                if (node.operator.tokenType == TokenType.PLUS) {
+                    instructions.add(Instruction(OpCode.OpAdd))
+                }
             }
             is IntExpression -> {
                 instructions.add(Instruction(OpCode.OpConstant, instructions.size))

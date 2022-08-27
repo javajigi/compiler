@@ -17,10 +17,11 @@ class CompilerTest {
 
         val bytecode = compiler.bytecode()
         val instructions = bytecode.instructions
-        assertThat(instructions).hasSize(2)
+        assertThat(instructions).hasSize(3)
         assertThat(instructions).containsExactly(
             Instruction(OpCode.OpConstant, 0),
-            Instruction(OpCode.OpConstant, 1)
+            Instruction(OpCode.OpConstant, 1),
+            Instruction(OpCode.OpAdd)
         )
         val constants = bytecode.constants
         assertThat(constants).hasSize(2)

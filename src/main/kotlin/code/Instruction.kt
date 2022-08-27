@@ -3,7 +3,7 @@ package code
 import to2ByteArray
 
 data class Instruction(val bytes: ByteArray) {
-    constructor(opCode: OpCode): this(opCode, opCode.operandWidths())
+    constructor(opCode: OpCode): this(byteArrayOf(opCode.ordinalToByte()))
 
     constructor(opCode: OpCode, number: Int): this(byteArrayOf(opCode.ordinalToByte(), *number.to2ByteArray() ))
 

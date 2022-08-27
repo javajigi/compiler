@@ -16,7 +16,7 @@ class ByteTest {
     fun setByteArray() {
         val bytes = ubyteArrayOf(OpCode.OpConstant.ordinal.toUByte(), *3.to2UByteArray() )
         assertThat(bytes).hasSize(3)
-        assertThat(bytes).containsExactly(0u, 3u, 0u)
+        assertThat(bytes).containsExactly(0u, 0u, 3u)
     }
 
     @Test

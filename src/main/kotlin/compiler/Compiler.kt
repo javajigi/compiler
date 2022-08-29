@@ -22,6 +22,7 @@ class Compiler {
             }
             is ExpressionStatement -> {
                 compile(node.expression)
+                instructions.add(Instruction(OpCode.OpPop))
             }
             is InfixExpression -> {
                 compile(node.left)
@@ -32,7 +33,7 @@ class Compiler {
                 }
             }
             is IntExpression -> {
-                instructions.add(Instruction(OpCode.OpConstant, instructions.size))
+                instructions.add(Instruction(OpCode.OpConstant, constants.size))
                 constants.add(node.value())
             }
         }

@@ -2,6 +2,7 @@ package code
 
 enum class OpCode(val operandWidths: List<Int>) {
     OpConstant(listOf(2)),
+    OpPop(listOf()),
     OpAdd(listOf());
 
     fun constants(): Boolean = this == OpConstant

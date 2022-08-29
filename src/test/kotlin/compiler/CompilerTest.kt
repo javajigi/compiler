@@ -9,14 +9,31 @@ import parser.MonkeyParser
 
 class CompilerTest {
     @Test
+    fun integerArithmetic() {
+        val bytecode = bytecode("1; 2")
+        val instructions = bytecode.instructions
+        assertThat(instructions).hasSize(4)
+        assertThat(instructions).containsExactly(
+                Instruction(OpCode.OpConstant, 0),
+                Instruction(OpCode.OpPop),
+                Instruction(OpCode.OpConstant, 1),
+                Instruction(OpCode.OpPop)
+        )
+        val constants = bytecode.constants
+        assertThat(constants).hasSize(2)
+        assertThat(constants).containsExactly(1, 2)
+    }
+
+    @Test
     fun compile() {
         val bytecode = bytecode("1 + 2")
         val instructions = bytecode.instructions
-        assertThat(instructions).hasSize(3)
+        assertThat(instructions).hasSize(4)
         assertThat(instructions).containsExactly(
             Instruction(OpCode.OpConstant, 0),
             Instruction(OpCode.OpConstant, 1),
-            Instruction(OpCode.OpAdd)
+            Instruction(OpCode.OpAdd),
+            Instruction(OpCode.OpPop)
         )
         val constants = bytecode.constants
         assertThat(constants).hasSize(2)

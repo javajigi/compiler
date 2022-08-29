@@ -8,6 +8,7 @@ class VirtualMachine(private val bytecode: Bytecode) {
     private val instructions = bytecode.instructions
     private val constants = bytecode.constants
     private val stack = Stack<Any>()
+    private var lastPoppedStackElement: Any? = null
 
     fun run() {
         for (instruction in instructions) {
@@ -22,8 +23,12 @@ class VirtualMachine(private val bytecode: Bytecode) {
                 val left = stack.pop() as Int
                 stack.push(left + right)
             }
+
+            if (opCode == OpCode.OpPop) {
+                lastPoppedStackElement = stack.pop()
+            }
         }
     }
 
-    fun pop(): Any = stack.pop()
+    fun lastPoppedStackElement(): Any? = lastPoppedStackElement
 }

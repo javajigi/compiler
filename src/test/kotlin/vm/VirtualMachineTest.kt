@@ -10,6 +10,6 @@ class VirtualMachineTest {
         val bytecode = bytecode("1 + 2")
         val vm = VirtualMachine(bytecode)
         vm.run()
-        assertThat(vm.pop()).isEqualTo(3)
+        assertThat(vm.lastPoppedStackElement()).isEqualTo(3)
     }
 }

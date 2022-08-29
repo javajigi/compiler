@@ -11,11 +11,10 @@ class VirtualMachine(private val bytecode: Bytecode) {
 
     fun run() {
         for (instruction in instructions) {
-            val opCode = instruction.opCode()
+            val opCode = instruction.opCode
 
             if (opCode.constants()) {
-                println("push: ${constants[instruction.index()]}")
-                stack.push(constants[instruction.index()])
+                stack.push(constants[instruction.index])
             }
 
             if (opCode == OpCode.OpAdd) {

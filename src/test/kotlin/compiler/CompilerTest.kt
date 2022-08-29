@@ -10,12 +10,7 @@ import parser.MonkeyParser
 class CompilerTest {
     @Test
     fun compile() {
-        val parser = MonkeyParser(Lexer("1 + 2"))
-        val program = parser.parse()
-        val compiler = Compiler()
-        compiler.compile(program)
-
-        val bytecode = compiler.bytecode()
+        val bytecode = bytecode("1 + 2")
         val instructions = bytecode.instructions
         assertThat(instructions).hasSize(3)
         assertThat(instructions).containsExactly(
@@ -27,4 +22,12 @@ class CompilerTest {
         assertThat(constants).hasSize(2)
         assertThat(constants).containsExactly(1, 2)
     }
+}
+
+fun bytecode(statement: String): Bytecode {
+    val parser = MonkeyParser(Lexer(statement))
+    val program = parser.parse()
+    val compiler = Compiler()
+    compiler.compile(program)
+    return compiler.bytecode()
 }

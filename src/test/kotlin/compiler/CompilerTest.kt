@@ -9,7 +9,7 @@ import parser.MonkeyParser
 
 class CompilerTest {
     @Test
-    fun integerArithmetic() {
+    fun integer() {
         val bytecode = bytecode("1; 2")
         val instructions = bytecode.instructions
         assertThat(instructions).hasSize(4)
@@ -25,7 +25,7 @@ class CompilerTest {
     }
 
     @Test
-    fun compile() {
+    fun arithmeticOperation() {
         val bytecode = bytecode("1 + 2")
         val instructions = bytecode.instructions
         assertThat(instructions).hasSize(4)

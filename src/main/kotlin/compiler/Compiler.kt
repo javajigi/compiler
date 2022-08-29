@@ -28,8 +28,18 @@ class Compiler {
                 compile(node.left)
                 compile(node.right)
 
-                if (node.operator.tokenType == TokenType.PLUS) {
+                val operatorTokenType = node.operator.tokenType
+                if (operatorTokenType == TokenType.PLUS) {
                     instructions.add(Instruction(OpCode.OpAdd))
+                }
+                if (operatorTokenType == TokenType.MINUS) {
+                    instructions.add(Instruction(OpCode.OpSub))
+                }
+                if (operatorTokenType == TokenType.ASTERISK) {
+                    instructions.add(Instruction(OpCode.OpMul))
+                }
+                if (operatorTokenType == TokenType.SLASH) {
+                    instructions.add(Instruction(OpCode.OpDiv))
                 }
             }
             is IntExpression -> {

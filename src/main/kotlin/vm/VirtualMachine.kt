@@ -18,10 +18,10 @@ class VirtualMachine(private val bytecode: Bytecode) {
                 stack.push(constants[instruction.index])
             }
 
-            if (opCode == OpCode.OpAdd) {
+            if (OpCode.binaryOperator(opCode)) {
                 val right = stack.pop() as Int
                 val left = stack.pop() as Int
-                stack.push(left + right)
+                stack.push(opCode.operateBinary(left, right))
             }
 
             if (opCode == OpCode.OpPop) {
